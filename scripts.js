@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // objeto do usuário
 const usuario = { nome: "Raphael", matricula: "123456", pendencia: false, acessibilidade: true };
 
@@ -44,3 +45,6 @@ function reservarArmario() {
     console.log(armarios);
 
 }
+=======
+
+>>>>>>> 279118087f15faf3ee174a6c1709e0d17d503b17
