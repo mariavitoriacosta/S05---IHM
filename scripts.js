@@ -1,42 +1,40 @@
 function reservarArmario() {
-    // Obter o tipo selecionado no HTML.
+
+    // obter tipo de armário selecionado pelo usuário no html.
     let tipoSelecionado = document.getElementById("tipoArmario").value;
 
-    // Filtrar os armários disponíveis que correspondam ao tipo selecionado e às condições de acessibilidade.
-    let armariosDisponiveis = armarios.filter(a =>
-        a.formato === tipoSelecionado &&
-        a.status === true &&
-        usuario.acessibilidade === a.acessivel
-    );
+    // na lista, filtrar apenas os armários que estão disponíveis e que são acessiveis ao usuário.
+    let armariosDisponiveis = armarios.filter(a => a.formato === tipoSelecionado && a.status === true && usuario.acessibilidade === a.acessivel);
 
-    // Se não houver armários disponíveis, exibe uma mensagem e encerra a função.
+    // caso não exista armário disponível, retorna para o usuário mensagem.
     if (armariosDisponiveis.length === 0) {
         document.getElementById("resultado").innerText = `Olá, ${usuario.nome}! Nenhum armário disponível para o tipo selecionado.`;
         return;
     }
 
-    // Sorteia um armário disponível.
+    // Caso exista armário(s) disponíveil, seguimos sorteando uma opção. 
     let armarioSorteado = armariosDisponiveis[Math.floor(Math.random() * armariosDisponiveis.length)];
 
-    // Registrar a data e hora da reserva.
+    // =============================
+    // Funcionalidades adicionadas:
+    // Registrar data/hora da reserva e calcular data/hora para entrega das chaves (24h depois)
     let dataReserva = new Date();
     armarioSorteado.dataReserva = dataReserva;
-
-    // Calcular a data e hora para entrega das chaves (24 horas após a reserva).
     let dataEntrega = new Date(dataReserva.getTime() + (24 * 60 * 60 * 1000));
     armarioSorteado.dataEntrega = dataEntrega;
+    // =============================
 
-    // Atualiza o status do armário para reservado.
-    armarios.find(armario => armario.id === armarioSorteado.id).status = false;
+    // Depois localizamos o armário emprestado na lista de armarios e mudamos o status do armário.
+    let armarioEmprestado = armarios.find(armario => armario.id === armarioSorteado.id).status = false;
 
-    // Atualiza a pendência do usuário.
+    // Finalmente, mudamos a pendencia do usuário para verdadeira.
     usuario.pendencia = true;
 
-    // Exibe a mensagem de sucesso, incluindo a data e hora para entrega das chaves.
-    document.getElementById("resultado").innerText =
-        `Olá, ${usuario.nome}! O armário ${armarioSorteado.id} foi reservado com sucesso!\n` +
-        `Data da reserva: ${dataReserva.toLocaleString()}\n` +
-        `Entrega das chaves: ${dataEntrega.toLocaleString()}`;
+    // Impmimimos uma mensagem de reserva para o usuário.
+    document.getElementById("resultado").innerText = `Olá, ${usuario.nome}! O armário ${armarioSorteado.id} foi reservado com sucesso!`;
+
+    // Acrescentamos a data da reserva e a data de entrega das chaves na mensagem.
+    document.getElementById("resultado").innerText += `\nData da reserva: ${dataReserva.toLocaleString()}\nEntrega das chaves: ${dataEntrega.toLocaleString()}`;
 
     console.log(usuario);
     console.log(armarios);
