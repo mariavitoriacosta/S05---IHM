@@ -1,0 +1,146 @@
+﻿/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #eee; /* Fundo neutro para destacar o container */
+    font-family: sans-serif;
+}
+
+/* Container principal simulando 414×896, 
+   com 12 colunas (cada ~34.5px), linhas horizontais e 16px de margem/padding */
+.container {
+    width: 414px;
+    height: 896px; /* Altura fixa para simular o mockup */
+    margin: 16px auto; /* 16px de margem vertical e centraliza horizontalmente */
+    padding: 16px;
+    position: relative; /* Para posicionar os pontinhos no rodapé */
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+    /* Agora as colunas são azul claro e bege, 
+     cada coluna ~34.5px (12 colunas total = 414px) 
+     + linhas horizontais */
+    background:
+    /* Listras verticais (azul claro e bege) */
+    repeating-linear-gradient( to right,
+    /* 1ª cor: #cffafe (azul claro) */
+    #cffafe 0, #cffafe 34.5px,
+    /* 2ª cor: #fff7e0 (bege claro) */
+    #fff7e0 34.5px, #fff7e0 69px ),
+    /* Linhas horizontais */
+    repeating-linear-gradient( to bottom, transparent 0, transparent 63px, rgba(0,0,0,0.15) 63px, rgba(0,0,0,0.15) 64px );
+}
+
+/* Cada área do layout (header, mensagens, aulas, notícias) 
+   ocupa as 12 colunas e recebe sua cor de fundo */
+header, .mensagens, .aulas, .noticias {
+    grid-column: 1 / 13;
+    padding: 16px;
+}
+
+/* 1) HEADER */
+header {
+    background: #c7f3dd; /* cor para o header */
+}
+
+/* Centralizar as caixas de ícones e logo */
+.top-icons {
+    display: flex;
+    justify-content: center; /* <-- centraliza horizontalmente */
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+/* Aumentar a fonte do “Olá Maria Vitória” */
+header h1 {
+    font-size: 1.5rem; /* fonte maior */
+}
+
+/* 2) MENSAGENS */
+.mensagens {
+    background: #fbcfe8; /* cor para as mensagens */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.linha-mensagem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.3);
+    padding: 8px;
+    min-height: 60px; /* garante mesma altura */
+}
+
+/* 3) AULAS */
+.aulas {
+    background: #fef08a; /* cor para a área de aulas */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+/* Caixa grande que engloba cada disciplina e seus 3 itens */
+.disciplina-box {
+    background: rgba(255,255,255,0.3);
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icons {
+    display: flex;
+    gap: 8px;
+}
+
+/* 4) NOTÍCIAS */
+.noticias {
+    background: #fecaca; /* cor para a área de notícias */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.box-grande {
+    width: 100%;
+    height: 120px;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+/* ----- CAIXAS E ELEMENTOS COM "X" ----- */
+.box-pequena {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+/* ----- TRÊS PONTINHOS (DOTS) NO RODAPÉ ----- */
+.dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: #333;
+    border-radius: 50%;
+}

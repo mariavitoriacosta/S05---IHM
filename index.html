@@ -2,21 +2,83 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <!-- Define a largura do dispositivo em 414px para simular o layout de celular -->
+    <meta name="viewport" content="width=414, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva de Armário</title>
-    <script src="scripts.js"></script>
+    <title>Wireframe Acadêmico</title>
+    <!-- Vincula o arquivo CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h2>Reserva de Armário</h2>
-        <label for="tipoArmario">Selecione o tipo de armário:</label>
-        <select id="tipoArmario">
-            <option value="padrao">Padrão</option>
-            <option value="duplo">Duplo</option>
-        </select>
-        <button onclick="reservarArmario()">Reservar</button>
-        <div id="resultado"></div>
+
+        <!-- HEADER -->
+        <header>
+            <!-- Três caixas (icone, logo, icone) acima do “Olá Maria Vitória” -->
+            <div class="top-icons">
+                <div class="box-pequena">icone</div>
+                <div class="box-pequena">logo</div>
+                <div class="box-pequena">icone</div>
+            </div>
+            <h1>Olá Maria Vitória</h1>
+        </header>
+
+        <!-- MENSAGENS -->
+        <section class="mensagens">
+            <div class="linha-mensagem">
+                <div class="box-pequena">X</div>
+                <p>Você possui um armário reservado com entrega para hoje.</p>
+            </div>
+            <div class="linha-mensagem">
+                <div class="box-pequena">X</div>
+                <p>Você possui uma pendência no financeiro.</p>
+            </div>
+        </section>
+
+        <!-- AULAS (3 disciplinas) -->
+        <main class="aulas">
+            <!-- Cada disciplina dentro de uma caixa grande -->
+            <div class="disciplina-box">
+                <p>Disciplina, Sala e Horário</p>
+                <div class="icons">
+                    <div class="box-pequena">X</div>
+                    <div class="box-pequena">X</div>
+                    <div class="box-pequena">X</div>
+                </div>
+            </div>
+            <div class="disciplina-box">
+                <p>Disciplina, Sala e Horário</p>
+                <div class="icons">
+                    <div class="box-pequena">X</div>
+                    <div class="box-pequena">X</div>
+                    <div class="box-pequena">X</div>
+                </div>
+            </div>
+            <div class="disciplina-box">
+                <p>Disciplina, Sala e Horário</p>
+                <div class="icons">
+                    <div class="box-pequena">X</div>
+                    <div class="box-pequena">X</div>
+                    <div class="box-pequena">X</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- NOTÍCIAS -->
+        <section class="noticias">
+            <div class="box-grande">X</div>
+            <p>Card de Notícias</p>
+        </section>
+
+        <!-- Três pontinhos no rodapé -->
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
     </div>
+
+    <!-- Vincula o arquivo JS -->
+    <script src="script.js"></script>
 </body>
 </html>
