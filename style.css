@@ -5,9 +5,22 @@
     box-sizing: border-box;
 }
 
+:root {
+    --message-box-background: #0800EB;
+    --line-message-box-background: #31A5E8;
+    --md-sys-color-primary-container: #316BE8;
+    --md-sys-color-on-primary-container: #FFFFFF;
+    --aulas-background: #782BEB;
+    --aulas-color: #A8BDEB;
+    --noticias-color: #316BE8;
+    --background-color: #A8BDEB;
+}
+
+
 body {
-    background: #eee; /* Fundo neutro para destacar o container */
-    font-family: sans-serif;
+    background: var(--background-color);
+    font-family: "Arimo", sans-serif;
+    color: #FFFFFF;
 }
 
 /* Container principal simulando 414×896, 
@@ -21,18 +34,7 @@ body {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 16px;
-    /* Agora as colunas são azul claro e bege, 
-     cada coluna ~34.5px (12 colunas total = 414px) 
-     + linhas horizontais */
-    background:
-    /* Listras verticais (azul claro e bege) */
-    repeating-linear-gradient( to right,
-    /* 1ª cor: #cffafe (azul claro) */
-    #cffafe 0, #cffafe 34.5px,
-    /* 2ª cor: #fff7e0 (bege claro) */
-    #fff7e0 34.5px, #fff7e0 69px ),
-    /* Linhas horizontais */
-    repeating-linear-gradient( to bottom, transparent 0, transparent 63px, rgba(0,0,0,0.15) 63px, rgba(0,0,0,0.15) 64px );
+    background: var(--background-color);
 }
 
 /* Cada área do layout (header, mensagens, aulas, notícias) 
@@ -40,29 +42,44 @@ body {
 header, .mensagens, .aulas, .noticias {
     grid-column: 1 / 13;
     padding: 16px;
+    border-radius: 15px;
 }
 
 /* 1) HEADER */
 header {
-    background: #c7f3dd; /* cor para o header */
+    background: #FFFFF; /* cor para o header */
 }
 
 /* Centralizar as caixas de ícones e logo */
 .top-icons {
-    display: flex;
-    justify-content: center; /* <-- centraliza horizontalmente */
-    gap: 8px;
-    margin-bottom: 8px;
+    display: flex; /* Habilita o flexbox */
+    justify-content: center; /* Centraliza os ícones */
+    align-items: center; /* Alinha verticalmente */
+    gap: 300px; /* Ajuste a distância entre os ícones */
+    margin-bottom: -20px;
 }
 
-/* Aumentar a fonte do “Olá Maria Vitória” */
+    .top-icons span {
+        font-size: 40px; /* Aumenta o tamanho dos ícones */
+        cursor: pointer;
+    }
+
+.logo {
+    width: 130px; /* Ajuste conforme necessário */
+    height: 30px; /* Mantém a proporção */
+    position: absolute;
+    top: 22px; /* Distância do topo */
+    left: 140px; /* Distância da esquerda */
+}
+
+
 header h1 {
-    font-size: 1.5rem; /* fonte maior */
+    font-size: 1.8rem;
 }
 
 /* 2) MENSAGENS */
 .mensagens {
-    background: #fbcfe8; /* cor para as mensagens */
+    background: var(--message-box-background); /* cor para as mensagens */
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -72,25 +89,27 @@ header h1 {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255,255,255,0.3);
+    background: var(--line-message-box-background);
     padding: 8px;
-    min-height: 60px; /* garante mesma altura */
+    min-height: 60px;
+    border-radius: 15px;
 }
 
 /* 3) AULAS */
 .aulas {
-    background: #fef08a; /* cor para a área de aulas */
+    background: var(--aulas-background);
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 /* Caixa grande que engloba cada disciplina e seus 3 itens */
 .disciplina-box {
-    background: rgba(255,255,255,0.3);
+    background: var(--aulas-color);
     padding: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 15px;
 }
 
 .icons {
@@ -100,7 +119,7 @@ header h1 {
 
 /* 4) NOTÍCIAS */
 .noticias {
-    background: #fecaca; /* cor para a área de notícias */
+    background: var(--noticias-color);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -131,16 +150,61 @@ header h1 {
 /* ----- TRÊS PONTINHOS (DOTS) NO RODAPÉ ----- */
 .dots {
     position: absolute;
-    bottom: 16px;
+    bottom: 1px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 8px;
+    gap: 10px;
 }
 
 .dot {
     width: 8px;
     height: 8px;
-    background: #333;
+    background: var(--md-sys-color-on-primary-container);
     border-radius: 50%;
+}
+
+
+.theme-menu {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5); /* Centraliza e aumenta o tamanho */
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 10;
+    padding: 20px;
+}
+
+    .theme-menu button {
+        background-color: #316BE8;
+        color: #03045e;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        margin: 5px;
+        cursor: pointer;
+    }
+
+        .theme-menu button:hover {
+            background-color: #00b4d8;
+        }
+
+.content {
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.inatel {
+    background-color: #003b5c;
+    color: #fff;
+}
+
+.dark {
+    background-color: #333;
+    color: #fff;
 }

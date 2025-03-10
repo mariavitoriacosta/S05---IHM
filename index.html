@@ -2,35 +2,46 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <!-- Define a largura do dispositivo em 414px para simular o layout de celular -->
     <meta name="viewport" content="width=414, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Wireframe Acadêmico</title>
-    <!-- Vincula o arquivo CSS -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" />
+    <!-- fonte -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
+    </style>
 </head>
 <body>
     <div class="container">
 
         <!-- HEADER -->
         <header>
-            <!-- Três caixas (icone, logo, icone) acima do “Olá Maria Vitória” -->
             <div class="top-icons">
-                <div class="box-pequena">icone</div>
-                <div class="box-pequena">logo</div>
-                <div class="box-pequena">icone</div>
+                <span class="material-symbols-outlined" onclick="toggleThemeMenu()">menu</span>
+                <img src="images/Inatel.png" alt="" class="logo">
+                <span class="material-symbols-outlined">person</span>
             </div>
-            <h1>Olá Maria Vitória</h1>
         </header>
+
+        <div class="theme-menu">
+            <button onclick="tema_inatel()">Tema Inatel</button>
+            <button onclick="tema_dark()">Tema Dark</button>
+        </div>
 
         <!-- MENSAGENS -->
         <section class="mensagens">
+            <h1>Olá Maria Vitória</h1>
             <div class="linha-mensagem">
-                <div class="box-pequena">X</div>
+                <div class="sino">
+                    <span class="material-symbols-outlined">notifications_active</span>
+                </div>
                 <p>Você possui um armário reservado com entrega para hoje.</p>
             </div>
             <div class="linha-mensagem">
-                <div class="box-pequena">X</div>
+                <div class="carta">
+                    <span class="material-symbols-outlined">mail</span>
+                </div>
                 <p>Você possui uma pendência no financeiro.</p>
             </div>
         </section>
