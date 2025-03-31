@@ -1,0 +1,77 @@
+
+:host {
+    --frequencia: #1D27B1;
+    --nota: #1D27B1;
+    --prova: #1D27B1;  
+    --lable_note: rgb(255, 255, 255);
+    display: block;
+    
+  }
+
+  .titulo_aula {
+      font-weight: bold;
+      font-size: 15px;
+      padding: 0 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .lables { 
+        grid-column: 1 / 13;
+      display: flex;
+    }
+      
+.p_lable {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lable-prova.p_lable {
+  background-color: var(--prova);
+  color: white !important;
+  font-weight: bold;
+  padding: 7px 15px;
+  border-radius: 50px;
+  text-align: center;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+      
+
+      .lable-frequencia,
+      .lable-nota {
+        padding: 7px 15px;
+        margin-bottom: 10px;
+        border-radius: 500px;
+        text-align: center;
+        margin-right: 10px;
+        color: rgb(255, 255, 255);
+      }
+      .lable-nota
+      {
+        color: var(--lable_note);
+      }
+    
+    .lable-frequencia {
+      background-color: var(--frequencia);
+    }
+    
+    .lable-nota {
+      background-color: var(--nota);
+    }
+    
+      .comp-aula {
+        background-color: #rgb(255, 255, 255);
+        padding: 16px;
+        grid-column: 1 / 13;
+        margin-bottom: 16px;
+        border-radius: 20px;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        overflow: hidden; /* <- ESSENCIAL pra não vazar */
+      }
+      
+    

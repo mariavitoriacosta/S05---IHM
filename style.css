@@ -1,4 +1,4 @@
-﻿/* Reset básico */
+﻿
 * {
     margin: 0;
     padding: 0;
@@ -6,83 +6,94 @@
 }
 
 :root {
-    --message-box-background: #0800EB;
-    --line-message-box-background: #31A5E8;
+    --message-box-background: #AFBFDC;
+    --line-message-box-background: #FFFFFF;
     --md-sys-color-primary-container: #316BE8;
     --md-sys-color-on-primary-container: #FFFFFF;
-    --aulas-background: #782BEB;
-    --aulas-color: #A8BDEB;
-    --noticias-color: #316BE8;
-    --background-color: #A8BDEB;
+    --aulas-background: #1D27B1; /* #782BEB*/
+    --aulas-color: #FFFFFF; /*#A8BDEB */
+    --noticias-color: #87A4DB;
+    --background-color: #FFFFFF;
+    --body-color: #1D27B1;
+    --card-color: #FFFFFF;
+    --card-text-color: #1D27B1;
 }
 
 
 body {
     background: var(--background-color);
     font-family: "Arimo", sans-serif;
-    color: #FFFFFF;
+    color: var(--body-color);
+    font-size: 12px;
 }
 
-/* Container principal simulando 414×896, 
-   com 12 colunas (cada ~34.5px), linhas horizontais e 16px de margem/padding */
 .container {
-    width: 414px;
-    height: 896px; /* Altura fixa para simular o mockup */
-    margin: 16px auto; /* 16px de margem vertical e centraliza horizontalmente */
+    width: auto;
+    grid-column: 1 / 13;
+    min-height: 100vh;
+    margin: 16px auto;
     padding: 16px;
-    position: relative; /* Para posicionar os pontinhos no rodapé */
+    position: relative;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 16px;
     background: var(--background-color);
 }
 
-/* Cada área do layout (header, mensagens, aulas, notícias) 
-   ocupa as 12 colunas e recebe sua cor de fundo */
-header, .mensagens, .aulas, .noticias {
+header, .mensagens, .aulas {
     grid-column: 1 / 13;
     padding: 16px;
     border-radius: 15px;
 }
 
-/* 1) HEADER */
 header {
-    background: #FFFFF; /* cor para o header */
+    background: #FFFFF;
 }
 
-/* Centralizar as caixas de ícones e logo */
 .top-icons {
-    display: flex; /* Habilita o flexbox */
-    justify-content: center; /* Centraliza os ícones */
-    align-items: center; /* Alinha verticalmente */
-    gap: 300px; /* Ajuste a distância entre os ícones */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
     margin-bottom: -20px;
 }
 
     .top-icons span {
-        font-size: 40px; /* Aumenta o tamanho dos ícones */
+        font-size: 40px;
         cursor: pointer;
     }
 
 .logo {
-    width: 130px; /* Ajuste conforme necessário */
-    height: 30px; /* Mantém a proporção */
+    width: 10px;
+    height: 30px;
     position: absolute;
-    top: 22px; /* Distância do topo */
-    left: 140px; /* Distância da esquerda */
+    top: px;
+    left: 100px;
 }
 
+.svg_logo_inatel {
+    overflow: visible;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100px;
+    fill: var(--body-color);
+}
+
+.path_logo {
+    stroke: none;
+}
 
 header h1 {
-    font-size: 1.8rem;
+    font-size: 16px;
 }
 
-/* 2) MENSAGENS */
 .mensagens {
-    background: var(--message-box-background); /* cor para as mensagens */
+    background: var(--message-box-background);
     display: flex;
     flex-direction: column;
     gap: 16px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .linha-mensagem {
@@ -93,49 +104,72 @@ header h1 {
     padding: 8px;
     min-height: 60px;
     border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* 3) AULAS */
-.aulas {
-    background: var(--aulas-background);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-/* Caixa grande que engloba cada disciplina e seus 3 itens */
-.disciplina-box {
-    background: var(--aulas-color);
-    padding: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 15px;
-}
 
-.icons {
-    display: flex;
-    gap: 8px;
-}
 
-/* 4) NOTÍCIAS */
-.noticias {
-    background: var(--noticias-color);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.box-grande {
+#carousel-container {
+    position: relative;
+    overflow: hidden;
     width: 100%;
-    height: 120px;
-    border: 2px solid #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    grid-column: 1 / 13;
+    color: (--aulas-color);
 }
 
-/* ----- CAIXAS E ELEMENTOS COM "X" ----- */
+/* Esse é o carrossel deslizante */
+.carousel {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    color: (--aulas-color);
+}
+
+/* Cada card ocupa o tamanho da tela (container do carrossel) */
+.card {
+    flex: 0 0 100%; /* Isso é essencial! */
+    height: 100%;
+    text-align: center;
+    background-color: var(--card-color);
+    color: var(--card-text-color);
+}
+
+    .card img {
+        width: 100%;
+        max-height: 160px; /* ajuste conforme o espaço que quer reservar pra imagem */
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+.info {
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--card-text-color);
+}
+
+    .info h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+        color: var(--card-text-color);
+    }
+
+
+.icon {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
 .box-pequena {
     width: 50px;
     height: 50px;
@@ -147,30 +181,12 @@ header h1 {
     font-weight: bold;
 }
 
-/* ----- TRÊS PONTINHOS (DOTS) NO RODAPÉ ----- */
-.dots {
-    position: absolute;
-    bottom: 1px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    background: var(--md-sys-color-on-primary-container);
-    border-radius: 50%;
-}
-
-
 .theme-menu {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1.5); /* Centraliza e aumenta o tamanho */
+    transform: translate(-50%, -50%) scale(1.5);
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
@@ -192,6 +208,30 @@ header h1 {
             background-color: #00b4d8;
         }
 
+#prevBtn,
+#nextBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 3px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 20%;
+    color: var(--body-color);
+}
+
+#prevBtn {
+    left: 10px;
+}
+
+#nextBtn {
+    right: 10px;
+}
+
+
 .content {
     padding: 20px;
     margin-top: 20px;
@@ -204,7 +244,4 @@ header h1 {
     color: #fff;
 }
 
-.dark {
-    background-color: #333;
-    color: #fff;
-}
+
