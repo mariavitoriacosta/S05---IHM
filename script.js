@@ -101,6 +101,8 @@ const eventos = [
 const carousel = document.querySelector('.carousel');
 const cards = document.querySelectorAll('.card');
 
+
+
 // Fun��o para criar os cards
 function createCards() {
     eventos.forEach(event => {
@@ -108,17 +110,37 @@ function createCards() {
         card.classList.add('card');
         card.innerHTML = `
             <img src="${event.image}" alt="${event.title}">
-            <div class="info">
-                <h3>${event.title}</h3>
-                <p>${event.description}</p>
-                <p><span class="material-symbols-outlined">event</span> ${event.date} às ${event.time} <span class="material-symbols-outlined">pin_drop</span> ${event.location}</p>
-            </div>
-        `;
+                <div class="info">
+                    <h3>${event.title}</h3>
+                    <p>${event.description}</p>
+                <p class="linha-icones">
+                    <span class="material-symbols-outlined icone-conteudo">event</span>
+                    ${event.date} às ${event.time}
+                    <span class="material-symbols-outlined icone-conteudo">pin_drop</span>
+                    ${event.location}
+        </p>
+    </div>
+`;
+
+
         carousel.appendChild(card);
     });
     // Atualize a lista de cards ap�s a cria��o
     updateCarousel();
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Aplica classe aos ícones material-symbols-outlined que estão dentro do carrossel
+    document.querySelectorAll('.carousel .material-symbols-outlined').forEach(icon => {
+        icon.classList.add('icone-conteudo');
+    });
+
+    // Aplica classe também aos ícones dentro de cards de aula/notícias (se necessário)
+    document.querySelectorAll('.comp-aula .material-symbols-outlined, .mensagens .material-symbols-outlined').forEach(icon => {
+        icon.classList.add('icone-conteudo');
+    });
+});
+
 
 let intervalId;
 let index = 0;

@@ -6,17 +6,17 @@
 }
 
 :root {
-    --message-box-background: #AFBFDC;
-    --line-message-box-background: #FFFFFF;
-    --md-sys-color-primary-container: #316BE8;
+    --message-box-background: #ffffff;
+    --line-message-box-background: #ffffff;
+    --md-sys-color-primary-container: #1d27b1;
     --md-sys-color-on-primary-container: #FFFFFF;
-    --aulas-background: #1D27B1; /* #782BEB*/
-    --aulas-color: #FFFFFF; /*#A8BDEB */
+    --aulas-background: #1D27B1;
+    --aulas-color: #FFFFFF;
     --noticias-color: #87A4DB;
-    --background-color: #FFFFFF;
-    --body-color: #1D27B1;
+    --background-color:#1D27B1;
+    --body-color: #000000; 
     --card-color: #FFFFFF;
-    --card-text-color: #1D27B1;
+    --card-text-color: #000000;
 }
 
 
@@ -62,6 +62,14 @@ header {
         font-size: 40px;
         cursor: pointer;
     }
+    
+.mensagens .material-symbols-outlined,
+.aulas .material-symbols-outlined,
+#carousel-container .material-symbols-outlined,
+.comp-aula .material-symbols-outlined {
+    color: #1D27B1; /* azul Inatel */
+}
+
 
 .logo {
     width: 10px;
@@ -77,37 +85,83 @@ header {
     width: 100%;
     height: auto;
     max-width: 100px;
-    fill: var(--body-color);
+    fill: #ffffff; 
 }
 
 .path_logo {
     stroke: none;
+    fill: #ffffff; 
 }
 
 header h1 {
     font-size: 16px;
+    margin-left: 16px;
 }
 
+.mensagem-boas-vindas {
+    grid-column: 1 / 13;
+    padding: 0 16px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 32px;
+}
+.mensagem-boas-vindas h1 {
+    white-space: nowrap;
+}
+
+.material-symbols-outlined {
+    color: #ffffff; 
+}
+
+.icone-box {
+    color: #1D27B1;
+}
+
+.mensagens,
+.aulas,
+.carousel-wrapper {
+  margin-bottom: 24px; /* ou 32px se quiser mais espaçado */
+}
+
+
 .mensagens {
+    grid-column: 1 / 13;
     background: var(--message-box-background);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 15px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .linha-mensagem {
+    font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     background: var(--line-message-box-background);
     padding: 8px;
-    min-height: 60px;
+    min-height: 20px;
     border-radius: 15px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.aulas {
+    grid-column: 1 / 13;
+    width: 100%;
+    display: contents;
+}
 
+aulas-component {
+  display: block;
+  grid-column: 1 / 13;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.carousel-wrapper {
+    grid-column: 1 / 13;
+    width: 100%;
+}
 
 #carousel-container {
     position: relative;
@@ -129,7 +183,7 @@ header h1 {
     width: 100%;
     height: 100%;
     transition: transform 0.5s ease-in-out;
-    color: (--aulas-color);
+    color: var(--aulas-color);
 }
 
 /* Cada card ocupa o tamanho da tela (container do carrossel) */
@@ -139,6 +193,7 @@ header h1 {
     text-align: center;
     background-color: var(--card-color);
     color: var(--card-text-color);
+    overflow: hidden;
 }
 
     .card img {
@@ -151,7 +206,7 @@ header h1 {
 
 .info {
     padding: 10px;
-    text-align: left;
+    text-align: center;
     width: 100%;
     font-size: 13px;
     line-height: 1.4;
@@ -165,10 +220,31 @@ header h1 {
     }
 
 
-.icon {
+.icon-conteudo {
     vertical-align: middle;
-    margin-right: 5px;
+    margin-right: 3px;
+    fill:#1D27B1;
 }
+
+.linha-icones {
+    display: flex;
+    justify-content: center;      /* CENTRALIZA horizontalmente */
+    align-items: center;          /* ALINHA verticalmente */
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    margin: 8px 0 0 0;
+    text-align: center; /* Garante centralização mesmo se quebrar */
+}
+
+
+.linha-icones .material-symbols-outlined {
+    font-size: 20px;
+    vertical-align: middle;
+    color: #1D27B1;
+}
+
+
 
 .box-pequena {
     width: 50px;
@@ -240,7 +316,7 @@ header h1 {
 }
 
 .inatel {
-    background-color: #003b5c;
+    background-color: #03045e;
     color: #fff;
 }
 

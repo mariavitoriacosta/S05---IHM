@@ -26,45 +26,48 @@
 
 
                 <span class="material-symbols-outlined">person</span>
+
             </div>
         </header>
 
         <div class="theme-menu">
+            <button><a href="calendario.html">calendario</a></button>
             <button onclick="tema_inatel()">Tema Inatel</button>
             <button onclick="tema_dark()">Tema Dark</button>
         </div>
 
+        <div class="mensagem-boas-vindas">
+            <h1>Olá, Maria Vitória!</h1>
+        </div>
         <!-- MENSAGENS -->
         <section class="mensagens">
-            <h1>Olá, Maria Vitória!</h1>
-            <div class="linha-mensagem">
-                <div class="sino">
-                    <span class="material-symbols-outlined">notifications_active</span>
+            
+                <div class="linha-mensagem">
+                    <span class="material-symbols-outlined icone-box">notifications_active</span>
+                    <p>Você possui um armário reservado com entrega para hoje...</p>
                 </div>
-                <p>Você possui um armário reservado com entrega para hoje...</p>
-            </div>
-            <div class="linha-mensagem">
-                <div class="carta">
-                    <span class="material-symbols-outlined">mail</span>
+                <div class="linha-mensagem">
+                    <span class="material-symbols-outlined icone-box">mail</span>
+                    <p>Você possui uma pendência no financeiro.</p>
                 </div>
-                <p>Você possui uma pendência no financeiro.</p>
-            </div>
         </section>
 
         <!-- AULAS (3 disciplinas) -->
         <div class="aulas">
             <aulas-component id="componente"></aulas-component> <!-- Novo componente -->
         </div>
-        <div id="carousel-container">
-            <div class="carousel">
-                <!-- Os cards deverão ser inseridos dinamicamente via JS -->
-            </div>
-            <button id="prevBtn">❮</button>
-            <button id="nextBtn">❯</button>
-        </div>
 
+        <div class="carousel-wrapper">
+            <div id="carousel-container">
+                <div class="carousel">
+                <!-- Os cards deverão ser inseridos dinamicamente via JS -->
+                </div>
+                <button id="prevBtn">❮</button>
+                <button id="nextBtn">❯</button>
+            </div>
+        </div>
         <script src="script.js"></script>
         <script src="script_componente.js"></script>
-        
+    </div>    
 </body>
 </html>
