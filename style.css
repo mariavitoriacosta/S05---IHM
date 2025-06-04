@@ -12,18 +12,28 @@
     --md-sys-color-on-primary-container: #FFFFFF;
     --aulas-background: #1D27B1;
     --aulas-color: #FFFFFF;
-    --noticias-color: #87A4DB;
     --background-color:#1D27B1;
     --body-color: #000000; 
     --card-color: #FFFFFF;
     --card-text-color: #000000;
+    --icon-logo-color: #ffffff;
+    --icon-box-color: #1D27B1;
+    --cor-texto-nota: #ffffff;
+    --theme-menu-bg: #ffffff;
+    --theme-menu-text: #000000;
+    --theme-menu-button: #1D27B1;
+    --theme-menu-button-hover: #0048a8;
+    --theme-menu-button-text: #ffffff;
+    --theme-toggle-bg: #ccc;
+    --theme-toggle-thumb: #ffffff;
+    --theme-toggle-active: #1D27B1;
 }
 
 
 body {
     background: var(--background-color);
     font-family: "Arimo", sans-serif;
-    color: var(--body-color);
+    color: var(--body-color); 
     font-size: 12px;
 }
 
@@ -67,7 +77,7 @@ header {
 .aulas .material-symbols-outlined,
 #carousel-container .material-symbols-outlined,
 .comp-aula .material-symbols-outlined {
-    color: #1D27B1; /* azul Inatel */
+    color: var(--icon-box-color); /* azul Inatel */
 }
 
 
@@ -85,12 +95,12 @@ header {
     width: 100%;
     height: auto;
     max-width: 100px;
-    fill: #ffffff; 
+    fill: var(--icon-logo-color); 
 }
 
 .path_logo {
     stroke: none;
-    fill: #ffffff; 
+    fill: var(--icon-logo-color); 
 }
 
 header h1 {
@@ -103,19 +113,20 @@ header h1 {
     padding: 0 16px;
     font-size: 12px;
     font-weight: bold;
-    color: #ffffff;
+    fill: var(--icon-logo-color); 
     margin-top: 32px;
 }
 .mensagem-boas-vindas h1 {
+    color: var(--icon-logo-color);
     white-space: nowrap;
 }
 
 .material-symbols-outlined {
-    color: #ffffff; 
+    color: var(--icon-logo-color);  
 }
 
 .icone-box {
-    color: #1D27B1;
+    color: var(--icon-box-color);
 }
 
 .mensagens,
@@ -170,11 +181,11 @@ aulas-component {
     max-width: 100%;
     max-height: 100%;
     height: auto;
-    background-color: white;
+    background-color: var(--card-color);
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     grid-column: 1 / 13;
-    color: (--aulas-color);
+    color: var(--aulas-color);
 }
 
 /* Esse é o carrossel deslizante */
@@ -223,25 +234,25 @@ aulas-component {
 .icon-conteudo {
     vertical-align: middle;
     margin-right: 3px;
-    fill:#1D27B1;
+    fill: var(--icon-box-color);
 }
 
 .linha-icones {
     display: flex;
-    justify-content: center;      /* CENTRALIZA horizontalmente */
-    align-items: center;          /* ALINHA verticalmente */
+    justify-content: center;     
+    align-items: center;       
     gap: 12px;
     flex-wrap: wrap;
     font-size: 14px;
     margin: 8px 0 0 0;
-    text-align: center; /* Garante centralização mesmo se quebrar */
+    text-align: center; 
 }
 
 
 .linha-icones .material-symbols-outlined {
     font-size: 20px;
     vertical-align: middle;
-    color: #1D27B1;
+    color: var(--icon-box-color);
 }
 
 
@@ -249,7 +260,7 @@ aulas-component {
 .box-pequena {
     width: 50px;
     height: 50px;
-    border: 2px solid #333;
+    border: 2px solid #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -258,66 +269,138 @@ aulas-component {
 }
 
 .theme-menu {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1.5);
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    z-index: 10;
-    padding: 20px;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--theme-menu-bg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  z-index: 10;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  min-width: 280px;
+  color: var(--theme-menu-text);
 }
 
-    .theme-menu button {
-        background-color: #316BE8;
-        color: #03045e;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        margin: 5px;
-        cursor: pointer;
-    }
+.theme-menu button {
+  background-color: var(--theme-menu-button);
+  color: var(--theme-menu-button-text);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
 
-        .theme-menu button:hover {
-            background-color: #00b4d8;
-        }
+.theme-menu button:hover {
+  background-color: var(--theme-menu-button-hover);
+}
 
 #prevBtn,
 #nextBtn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: none;
-    padding: 3px;
-    font-size: 20px;
-    cursor: pointer;
-    border-radius: 20%;
-    color: var(--body-color);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  padding: 3px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 20%;
+  color: var(--body-color);
 }
 
 #prevBtn {
-    left: 10px;
+  left: 10px;
 }
 
 #nextBtn {
-    right: 10px;
+  right: 10px;
 }
 
-
 .content {
-    padding: 20px;
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .inatel {
-    background-color: #03045e;
-    color: #fff;
+  background-color: #03045e;
+  color: #fff;
 }
 
+/* Linha do botão + texto */
+.theme-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--theme-menu-text);
+}
 
+/* Toggle deslizante */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle label {
+  position: absolute;
+  cursor: pointer;
+  background-color: var(--theme-toggle-bg);
+  border-radius: 34px;
+  height: 100%;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.toggle label::after {
+  content: "";
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--theme-toggle-thumb);
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggle input:checked + label {
+  background-color: var(--theme-toggle-active);
+}
+
+.toggle input:checked + label::after {
+  transform: translateX(26px);
+}
+
+/* Botão Calendário */
+.theme-menu a {
+  text-decoration: none;
+  background-color: var(--theme-menu-button);
+  color: #ffffff !important;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.theme-menu a:hover {
+  background-color: var(--theme-menu-button-hover);
+}

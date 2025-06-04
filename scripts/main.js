@@ -1,176 +1,123 @@
+let nav = 0;
+let clicked = null;
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
 
-// variaveis globais
+const calendar = document.getElementById('calendar');
+const weekdays = ['domingo','segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
 
-let nav = 0
-let clicked = null
-let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []
+function load() {
+  const date = new Date();
+  if (nav !== 0) date.setMonth(new Date().getMonth() + nav);
 
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
 
-// variavel do modal:
-const newEvent = document.getElementById('newEventModal')
-const deleteEventModal = document.getElementById('deleteEventModal')
-const backDrop = document.getElementById('modalBackDrop')
-const eventTitleInput = document.getElementById('eventTitleInput')
-// --------
-const calendar = document.getElementById('calendar') // div calendar:
-const weekdays = ['domingo','segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'] //array with weekdays:
-
-//funções
-
-function openModal(date){
-  clicked = date
-  const eventDay = events.find((event)=>event.date === clicked)
- 
-
-  if (eventDay){
-   document.getElementById('eventText').innerText = eventDay.title
-   deleteEventModal.style.display = 'block'
-
-
-  } else{
-    newEvent.style.display = 'block'
-
-  }
-
-  backDrop.style.display = 'block'
-}
-
-//função load() será chamada quando a pagina carregar:
-
-function load (){ 
-  const date = new Date() 
-  
-
-  //mudar titulo do mês:
-  if(nav !== 0){
-    date.setMonth(new Date().getMonth() + nav) 
-  }
-  
-  const day = date.getDate()
-  const month = date.getMonth()
-  const year = date.getFullYear()
-
-  
-  
-  const daysMonth = new Date (year, month + 1 , 0).getDate()
-  const firstDayMonth = new Date (year, month, 1)
-  
-
+  const daysMonth = new Date(year, month + 1, 0).getDate();
+  const firstDayMonth = new Date(year, month, 1);
   const dateString = firstDayMonth.toLocaleDateString('pt-br', {
-    weekday: 'long',
-    year:    'numeric',
-    month:   'numeric',
-    day:     'numeric',
-  })
-  
+    weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric',
+  });
 
-  const paddinDays = weekdays.indexOf(dateString.split(', ') [0])
-  
-  //mostrar mês e ano:
-  document.getElementById('monthDisplay').innerText = `${date.toLocaleDateString('pt-br',{month: 'long'})}, ${year}`
+  const paddinDays = weekdays.indexOf(dateString.split(', ')[0]);
+  const rawMonth = date.toLocaleDateString('pt-br', { month: 'long' });
+  const capitalizedMonth = rawMonth.charAt(0).toUpperCase() + rawMonth.slice(1);
+  document.getElementById('monthDisplay').innerText = `${capitalizedMonth}, ${year}`;
 
-  
-  calendar.innerHTML =''
-
-  // criando uma div com os dias:
+  calendar.innerHTML = '';
 
   for (let i = 1; i <= paddinDays + daysMonth; i++) {
-    const dayS = document.createElement('div')
-    dayS.classList.add('day')
+    const dayEl = document.createElement('div');
+    dayEl.classList.add('day');
 
-    const dayString = `${month + 1}/${i - paddinDays}/${year}`
+    const dayString = `${month + 1}/${i - paddinDays}/${year}`;
 
-    //condicional para criar os dias de um mês:
-     
     if (i > paddinDays) {
-      dayS.innerText = i - paddinDays
-      
+      dayEl.innerText = i - paddinDays;
 
-      const eventDay = events.find(event=>event.date === dayString)
-      
-      if(i - paddinDays === day && nav === 0){
-        dayS.id = 'currentDay'
+      const eventDay = events.filter(event => event.date === dayString);
+      if (i - paddinDays === day && nav === 0) dayEl.id = 'currentDay';
+
+      if (eventDay.length > 0) {
+        const eventDiv = document.createElement('div');
+        eventDiv.classList.add('event');
+        eventDiv.innerText = eventDay[0].title;
+        dayEl.appendChild(eventDiv);
       }
 
-
-      if(eventDay){
-        const eventDiv = document.createElement('div')
-        eventDiv.classList.add('event')
-        eventDiv.innerText = eventDay.title
-        dayS.appendChild(eventDiv)
-
-      }
-
-      dayS.addEventListener('click', ()=> openModal(dayString))
-
+      dayEl.addEventListener('click', () => openDay(dayString));
     } else {
-      dayS.classList.add('padding')
+      dayEl.classList.add('padding');
     }
 
-    
-    calendar.appendChild(dayS)
+    calendar.appendChild(dayEl);
   }
 }
 
-function closeModal(){
-  eventTitleInput.classList.remove('error')
-  newEvent.style.display = 'none'
-  backDrop.style.display = 'none'
-  deleteEventModal.style.display = 'none'
-
-  eventTitleInput.value = ''
-  clicked = null
-  load()
-
+function openDay(date) {
+  clicked = date;
+  renderEventList();
 }
-function saveEvent(){
-  if(eventTitleInput.value){
-    eventTitleInput.classList.remove('error')
 
-    events.push({
-      date: clicked,
-      title: eventTitleInput.value
-    })
+function renderEventList() {
+  const container = document.getElementById('eventListContainer');
+  const list = document.getElementById('eventList');
+  list.innerHTML = '';
 
-    localStorage.setItem('events', JSON.stringify(events))
-    closeModal()
+  const filtered = events.filter(e => e.date === clicked);
+  if (filtered.length === 0) {
+    list.innerHTML = '<li>Nenhum evento para este dia.</li>';
+  } else {
+    filtered.forEach((e, index) => {
+      const li = document.createElement('li');
+      li.textContent = e.title + " ";
 
-  }else{
-    eventTitleInput.classList.add('error')
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = '🗑';
+      deleteBtn.classList.add('delete-btn');
+      deleteBtn.onclick = () => deleteEvent(index);
+      li.appendChild(deleteBtn);
+
+      list.appendChild(li);
+    });
   }
+
+  container.style.display = 'block';
 }
 
-function deleteEvent(){
+function deleteEvent(indexToRemove) {
+  const filtered = events.filter(e => e.date === clicked);
+  const toDelete = filtered[indexToRemove];
 
-  events = events.filter(event => event.date !== clicked)
-  localStorage.setItem('events', JSON.stringify(events))
-  closeModal()
+  // Remove o evento
+  events = events.filter(e => !(e.date === toDelete.date && e.title === toDelete.title));
+  localStorage.setItem('events', JSON.stringify(events));
+  renderEventList();
+  load();
 }
 
-// botões 
+function addEvent() {
+  const input = document.getElementById('newEventInput');
+  const title = input.value.trim();
+  if (!title || !clicked) return;
 
-function buttons (){
-  document.getElementById('backButton').addEventListener('click', ()=>{
-    nav--
-    load()
-    
-  })
-
-  document.getElementById('nextButton').addEventListener('click',()=>{
-    nav++
-    load()
-    
-  })
-
-  document.getElementById('saveButton').addEventListener('click',()=> saveEvent())
-
-  document.getElementById('cancelButton').addEventListener('click',()=>closeModal())
-
-  document.getElementById('deleteButton').addEventListener('click', ()=>deleteEvent())
-
-  document.getElementById('closeButton').addEventListener('click', ()=>closeModal())
-  
+  events.push({ date: clicked, title });
+  localStorage.setItem('events', JSON.stringify(events));
+  input.value = '';
+  renderEventList();
+  load();
 }
-buttons()
-load()
 
+document.getElementById('addEventButton').addEventListener('click', addEvent);
+
+document.getElementById('backButton').addEventListener('click', () => {
+  nav--;
+  load();
+});
+
+document.getElementById('nextButton').addEventListener('click', () => {
+  nav++;
+  load();
+});
+
+load();

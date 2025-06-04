@@ -1,62 +1,61 @@
 console.log("Scripts carregado!");
-// Aqui voc� pode adicionar funcionalidades interativas se desejar.
+
+// Exibe ou oculta o menu de temas
 function toggleThemeMenu() {
     const themeMenu = document.querySelector('.theme-menu');
     themeMenu.style.display = themeMenu.style.display === 'flex' ? 'none' : 'flex';
 }
 
-function setTheme(theme) {
-    const content = document.querySelector('.content');
-    const body = document.querySelector('body');
-
-    // Remover classes anteriores
-    body.classList.remove('inatel', 'dark');
-    content.classList.remove('inatel', 'dark');
-
-    // Adicionar a classe do tema selecionado
-    if (theme === 'inatel') {
-        body.classList.add('inatel');
-        content.classList.add('inatel');
-    } else if (theme === 'dark') {
-        body.classList.add('dark');
-        content.classList.add('dark');
-    }
-
-    // Fechar o menu de temas
-    document.querySelector('.theme-menu').style.display = 'none';
-}
-
+// Aplica tema Inatel
 function tema_inatel() {
-    document.documentElement.style.setProperty('--message-box-background', '#AFBFDC');
-    document.documentElement.style.setProperty('--line-message-box-background', '#FFFFFF');
+    document.documentElement.style.setProperty('--message-box-background', '#ffffff');
+    document.documentElement.style.setProperty('--line-message-box-background', '#ffffff');
     document.documentElement.style.setProperty('--md-sys-color-primary-container', '#316BE8');
     document.documentElement.style.setProperty('--md-sys-color-on-primary-container', '#FFFFFF');
     document.documentElement.style.setProperty('--aulas-background', '#1D27B1');
     document.documentElement.style.setProperty('--aulas-color', '#FFFFFF');
-    document.documentElement.style.setProperty('--noticias-color', '#87A4DB');
-    document.documentElement.style.setProperty('--background-color', '#FFFFFF');
-    document.documentElement.style.setProperty('--body-color', '#1D27B1');
+    document.documentElement.style.setProperty('--background-color', '#1D27B1');
+    document.documentElement.style.setProperty('--body-color', '#000000');
     document.documentElement.style.setProperty('--card-color', '#FFFFFF');
-    document.documentElement.style.setProperty('--card-text-color', '#1D27B1');
+    document.documentElement.style.setProperty('--card-text-color', '#000000');
     document.documentElement.style.setProperty('--lable-note', '#ffffff');
+    document.documentElement.style.setProperty('--icon-logo-color', '#ffffff');
+    document.documentElement.style.setProperty('--icon-box-color', '#1d27b1');
+    document.documentElement.style.setProperty('--theme-menu-bg', '#ffffff');
+    document.documentElement.style.setProperty('--theme-menu-text', '#000000');
+    document.documentElement.style.setProperty('--theme-menu-button', '#1d27b1');
+    document.documentElement.style.setProperty('--theme-menu-button-hover', '#0048a8');
+    document.documentElement.style.setProperty('--theme-menu-button-text', '#ffffff');
+    document.documentElement.style.setProperty('--theme-toggle-bg', '#ccc');
+    document.documentElement.style.setProperty('--theme-toggle-thumb', '#ffffff');
+    document.documentElement.style.setProperty('--theme-toggle-active', '#1d27b1');
 }
 
+// Aplica tema Escuro
 function tema_dark() {
-    document.documentElement.style.setProperty('--message-box-background', '#020833');
+    document.documentElement.style.setProperty('--message-box-background', '#252C63');
     document.documentElement.style.setProperty('--line-message-box-background', '#252C63');
-    document.documentElement.style.setProperty('--md-sys-color-primary-container', '#000000');
+    document.documentElement.style.setProperty('--md-sys-color-primary-container', '#ffffff');
     document.documentElement.style.setProperty('--md-sys-color-on-primary-container', '#FFFFFF');
     document.documentElement.style.setProperty('--aulas-background', '#0C1139');
     document.documentElement.style.setProperty('--aulas-color', '#4C548E');
-    document.documentElement.style.setProperty('--noticias-color', '#0C1139');
     document.documentElement.style.setProperty('--background-color', '#000000');
     document.documentElement.style.setProperty('--body-color', '#FFFFFF');
     document.documentElement.style.setProperty('--card-color', '#252C63');
     document.documentElement.style.setProperty('--card-text-color', '#FFFFFF');
     document.documentElement.style.setProperty('--lable-note', '#0C1139');
+    document.documentElement.style.setProperty('--icon-logo-color', '#FFFFFF');
+    document.documentElement.style.setProperty('--icon-box-color', '#FFFFFF');
+    document.documentElement.style.setProperty('--cor-texto-nota', '#ffffff');
+    document.documentElement.style.setProperty('--theme-menu-bg', '#1a1a1a');
+    document.documentElement.style.setProperty('--theme-menu-text', '#ffffff');
+    document.documentElement.style.setProperty('--theme-menu-button', '#316be8');
+    document.documentElement.style.setProperty('--theme-menu-button-hover', '#0048a8');
+    document.documentElement.style.setProperty('--theme-menu-button-text', '#ffffff');
+    document.documentElement.style.setProperty('--theme-toggle-bg', '#333');
+    document.documentElement.style.setProperty('--theme-toggle-thumb', '#ffffff');
+    document.documentElement.style.setProperty('--theme-toggle-active', '#4c8dff');
 }
-
-
 
 // Lista de eventos
 const eventos = [
@@ -98,88 +97,34 @@ const eventos = [
     }
 ];
 
-const carousel = document.querySelector('.carousel');
-const cards = document.querySelectorAll('.card');
-
-
-
-// Fun��o para criar os cards
+// Cria os cards no carrossel
 function createCards() {
+    const carousel = document.querySelector('.carousel');
     eventos.forEach(event => {
         const card = document.createElement('div');
         card.classList.add('card');
         card.innerHTML = `
             <img src="${event.image}" alt="${event.title}">
-                <div class="info">
-                    <h3>${event.title}</h3>
-                    <p>${event.description}</p>
+            <div class="info">
+                <h3>${event.title}</h3>
+                <p>${event.description}</p>
                 <p class="linha-icones">
                     <span class="material-symbols-outlined icone-conteudo">event</span>
                     ${event.date} às ${event.time}
                     <span class="material-symbols-outlined icone-conteudo">pin_drop</span>
                     ${event.location}
-        </p>
-    </div>
-`;
-
-
+                </p>
+            </div>
+        `;
         carousel.appendChild(card);
     });
-    // Atualize a lista de cards ap�s a cria��o
     updateCarousel();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Aplica classe aos ícones material-symbols-outlined que estão dentro do carrossel
-    document.querySelectorAll('.carousel .material-symbols-outlined').forEach(icon => {
-        icon.classList.add('icone-conteudo');
-    });
-
-    // Aplica classe também aos ícones dentro de cards de aula/notícias (se necessário)
-    document.querySelectorAll('.comp-aula .material-symbols-outlined, .mensagens .material-symbols-outlined').forEach(icon => {
-        icon.classList.add('icone-conteudo');
-    });
-});
-
-
+// Navegação no carrossel
 let intervalId;
 let index = 0;
 
-window.onload = () => {
-    createCards();
-
-    const carousel = document.querySelector('.carousel');
-
-    // Botões de navegação
-    document.getElementById('nextBtn').addEventListener('click', nextCard);
-    document.getElementById('prevBtn').addEventListener('click', prevCard);
-
-    // Inicia rotação automática
-    intervalId = setInterval(nextCard, 5000);
-
-    // Pausar quando mouse estiver sobre o carrossel
-    carousel.addEventListener('mouseenter', () => {
-        clearInterval(intervalId);
-    });
-
-    // Retomar quando mouse sair
-    carousel.addEventListener('mouseleave', () => {
-        intervalId = setInterval(nextCard, 5000);
-    });
-
-    // Arrastar no celular
-    let startX;
-    carousel.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-    });
-    carousel.addEventListener('touchend', (e) => {
-        let endX = e.changedTouches[0].clientX;
-        if (startX - endX > 50) nextCard();
-        if (endX - startX > 50) prevCard();
-    });
-};
-
-// Funções de navegação e atualização
 function nextCard() {
     index = (index + 1) % eventos.length;
     updateCarousel();
@@ -194,3 +139,46 @@ function updateCarousel() {
     const carousel = document.querySelector('.carousel');
     carousel.style.transform = `translateX(-${index * 100}%)`;
 }
+
+// Inicialização ao carregar DOM
+document.addEventListener("DOMContentLoaded", () => {
+    // Aplica ícones em todos os locais
+    document.querySelectorAll('.carousel .material-symbols-outlined, .comp-aula .material-symbols-outlined, .mensagens .material-symbols-outlined').forEach(icon => {
+        icon.classList.add('icone-conteudo');
+    });
+
+    // Inicializa carrossel
+    createCards();
+
+    const carousel = document.querySelector('.carousel');
+    document.getElementById('nextBtn').addEventListener('click', nextCard);
+    document.getElementById('prevBtn').addEventListener('click', prevCard);
+
+    intervalId = setInterval(nextCard, 5000);
+    carousel.addEventListener('mouseenter', () => clearInterval(intervalId));
+    carousel.addEventListener('mouseleave', () => intervalId = setInterval(nextCard, 5000));
+
+    // Toque em celular
+    let startX;
+    carousel.addEventListener('touchstart', (e) => startX = e.touches[0].clientX);
+    carousel.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) nextCard();
+        if (endX - startX > 50) prevCard();
+    });
+
+    // Listener do botão deslizante de tema
+    const switchInput = document.getElementById('theme-switch');
+    if (switchInput) {
+        switchInput.addEventListener('change', () => {
+            if (switchInput.checked) {
+                tema_dark();
+            } else {
+                tema_inatel();
+            }
+        });
+    }
+
+    // Ativa tema padrão
+    tema_inatel();
+});

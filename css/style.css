@@ -1,21 +1,23 @@
 html{
 
 
-  --body-color:#FFFCFF ;
+  --body-color:#1d27b1 ;
 
-  --header-color:#d36c6c;
+  --header-color:#ffffff;
 
-  --header-button:#92a1d1;
+  --header-text-color: #000000;
 
-  --color-weekdays: #247BA0;
+  --header-button:#ffffff;
+
+  --color-weekdays: #ffffff;
   
-  --box-shadow: #CBD4C2;
+  --box-shadow: #ffffff;
 
-  --hover: #e8faed;
+  --hover: #4a56ff;
 
   --current-day:#e8f4fa;
 
-  --event-color: #58bae4;
+  --event-color: #58cde4;
 
   --modal-event: #e8f4fa;
 
@@ -25,18 +27,17 @@ html{
 
 }
 
-
-
 body {
   display: flex;
   margin-top: 50px;
   justify-content: center;
   background-color: var(--body-color);
+  font-family: "Arimo", sans-serif;
 }
 button {
   width: 75px;
   cursor: pointer;
-  box-shadow: 0px 0px 2px gray;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   border: none;
   outline: none;
   padding: 5px;
@@ -46,26 +47,39 @@ button {
 
 #header {
   padding: 10px;
-  color: var(--header-color) ;
+  color: var(--header-color);
   font-size: 26px;
   font-family: sans-serif;
   display: flex;
+  font-weight: bold;
   justify-content: space-between;
 }
 #header button {
   background-color:var(--header-button);
+  font-weight: bold;
+  color: var(--header-text-color);
 }
 #container {
   width: 770px;
+  grid-column: 1 / 13;
+  max-width: 800px;
+  width: 95%;
+  margin: auto;
 }
 #weekdays {
-  width: 100%;
   display: flex;
-  color: var(--color-weekdays) ;
+  justify-content: space-between;
+  text-align: center;
+  font-weight: bold;
+  padding: 8px 0;
+  flex-wrap: nowrap;
+  color: var(--header-button);
 }
 #weekdays div {
-  width: 100px;
-  padding: 10px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #calendar {
   width: 100%;
@@ -73,19 +87,85 @@ button {
   display: flex;
   flex-wrap: wrap;
 }
+
+#eventListContainer {
+  margin-top: 20px;
+  padding: 16px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  display: none;
+}
+
+#eventListContainer h3 {
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+#eventList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#eventList li {
+  background-color: var(--event-color);
+  color: white;
+  padding: 8px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+}
+
+#addEventInline {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+#newEventInput {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#addEventBtn {
+  background-color: var(--header-button);
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  color: darkred;
+}
+
+
 .day {
-  width: 100px;
   padding: 10px;
-  height: 100px;
   cursor: pointer;
   box-sizing: border-box;
   background-color: var(--color-day);
   margin: 5px;
-  box-shadow: 0px 0px 3px var(--box-shadow);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 15%;
+  width: calc(100% / 7 - 10px);
+  height: auto;
+  aspect-ratio: 1;
+  font-size: 0.9rem;
 }
 .day:hover {
   background-color: var(--hover);
@@ -113,7 +193,7 @@ button {
   z-index: 20;
   padding: 25px;
   background-color: var(--modal-event);
-  box-shadow: 0px 0px 3px black;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   width: 350px;
   top: 100px;
@@ -152,5 +232,24 @@ button {
   height: 100vh;
   position: absolute;
   background-color: rgba(0,0,0,0.8);
+}
+
+@media screen and (max-width: 600px) {
+  #header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .day {
+    font-size: 0.7rem;
+  }
+
+  #weekdays div {
+    font-size: 0.7rem;
+  }
+
+  #eventTitleInput {
+    font-size: 0.9rem;
+  }
 }
 

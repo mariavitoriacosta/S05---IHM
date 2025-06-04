@@ -4,6 +4,7 @@
     --nota: #1D27B1;
     --prova: #1D27B1;  
     --lable_note: rgb(255, 255, 255);
+    --cor-texto-nota: #ffffff;
     display: block;
     grid-column: 1 / 13;
     width: 100%;
@@ -64,11 +65,11 @@
         border-radius: 500px;
         text-align: center;
         margin-right: 10px;
-        color: rgb(255, 255, 255);
+        color: #000000;
       }
       .lable-nota
       {
-        color: var(--lable_note);
+        color: var(--cor-texto-nota);
       }
     
     .lable-frequencia {

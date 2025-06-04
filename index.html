@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=414, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Wireframe Acadêmico</title>
+    <title>Plataforma Inatel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" />
-    <!-- fonte -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
     </style>
@@ -31,10 +30,16 @@
         </header>
 
         <div class="theme-menu">
-            <button><a href="calendario.html">calendario</a></button>
-            <button onclick="tema_inatel()">Tema Inatel</button>
-            <button onclick="tema_dark()">Tema Dark</button>
+            <div class="theme-toggle-wrapper">
+                <div class="toggle">
+                    <input type="checkbox" id="theme-switch">
+                    <label for="theme-switch"></label>
+                </div>
+                <span>Alterar tema</span>
+            </div>
+            <a href="calendario.html">Calendário</a>
         </div>
+
 
         <div class="mensagem-boas-vindas">
             <h1>Olá, Maria Vitória!</h1>
