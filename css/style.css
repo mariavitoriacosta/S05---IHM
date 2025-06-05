@@ -17,7 +17,7 @@ html{
 
   --current-day:#e8f4fa;
 
-  --event-color: #58cde4;
+  --event-color: #1d27b1;
 
   --modal-event: #e8f4fa;
 
@@ -107,19 +107,42 @@ button {
   padding: 0;
 }
 
+
 #eventList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: var(--event-color);
   color: white;
-  padding: 8px;
+  padding: 8px 12px;
   margin-bottom: 6px;
   border-radius: 6px;
 }
+
+.event-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 
 #addEventInline {
   margin-top: 10px;
   display: flex;
   gap: 8px;
+  flex-wrap: nowrap;
 }
+
+#addEventInline {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  flex-shrink: 0;
+}
+
 
 #newEventInput {
   flex: 1;
@@ -128,26 +151,86 @@ button {
   border: 1px solid #ccc;
 }
 
-#addEventBtn {
+#newEventInput {
+  flex: 2;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#newEventTime {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#addEventButton {
   background-color: var(--header-button);
   color: white;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+  white-space: nowrap;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 160px; /* aumenta largura mínima */
+  text-align: center;
+  height: auto;
+  line-height: 1;              
+  min-width: unset;           
+  width: auto;           
+  height: auto;
+  box-sizing: border-box;
+}
+
+.event-time {
+  font-weight: 500;
+  color: #f5f5f5;
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+
+#addEventBtn {
+  background-color: #1d27b1;
+  color: #000000 !important;
   padding: 8px 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  appearance: none;
+}
+
+/* Cor dos dias com evento */
+.has-event {
+  background-color: #58cde4 !important; /* azul clarinho */
+  color: white;
+  font-weight: bold;
+  border: 2px solid #ffffff;
+}
+
+
+body #container #eventListContainer #addEventButton {
+  appearance: none;
+  color:white !important;
+  background-color: #1d27b1;
 }
 
 .delete-btn {
   margin-left: 10px;
   background: none;
   border: none;
-  color: red;
+  color: rgb(101, 100, 100);
   font-size: 16px;
   cursor: pointer;
+  background-color: #ffffff;
 }
 
 .delete-btn:hover {
-  color: darkred;
+  color: #666464;
 }
 
 

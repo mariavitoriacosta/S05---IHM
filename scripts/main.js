@@ -35,15 +35,10 @@ function load() {
     if (i > paddinDays) {
       dayEl.innerText = i - paddinDays;
 
-      const eventDay = events.filter(event => event.date === dayString);
-      if (i - paddinDays === day && nav === 0) dayEl.id = 'currentDay';
+      const hasEvent = events.some(event => event.date === dayString);
+      if (hasEvent) dayEl.classList.add('has-event');
 
-      if (eventDay.length > 0) {
-        const eventDiv = document.createElement('div');
-        eventDiv.classList.add('event');
-        eventDiv.innerText = eventDay[0].title;
-        dayEl.appendChild(eventDiv);
-      }
+      if (i - paddinDays === day && nav === 0) dayEl.id = 'currentDay';
 
       dayEl.addEventListener('click', () => openDay(dayString));
     } else {
@@ -64,18 +59,29 @@ function renderEventList() {
   const list = document.getElementById('eventList');
   list.innerHTML = '';
 
-  const filtered = events.filter(e => e.date === clicked);
+  const filtered = events
+    .filter(e => e.date === clicked)
+    .sort((a, b) => a.time.localeCompare(b.time)); // Ordena por horário
+
   if (filtered.length === 0) {
     list.innerHTML = '<li>Nenhum evento para este dia.</li>';
   } else {
     filtered.forEach((e, index) => {
       const li = document.createElement('li');
-      li.textContent = e.title + " ";
 
+      // Texto combinado com horário e título
+      const contentSpan = document.createElement('span');
+      contentSpan.classList.add('event-text');
+      contentSpan.textContent = `🕒 ${e.time} - ${e.title}`;
+
+      // Botão de deletar
       const deleteBtn = document.createElement('button');
       deleteBtn.textContent = '🗑';
       deleteBtn.classList.add('delete-btn');
       deleteBtn.onclick = () => deleteEvent(index);
+
+      // Append no li
+      li.appendChild(contentSpan);
       li.appendChild(deleteBtn);
 
       list.appendChild(li);
@@ -85,39 +91,35 @@ function renderEventList() {
   container.style.display = 'block';
 }
 
+
 function deleteEvent(indexToRemove) {
   const filtered = events.filter(e => e.date === clicked);
   const toDelete = filtered[indexToRemove];
 
-  // Remove o evento
-  events = events.filter(e => !(e.date === toDelete.date && e.title === toDelete.title));
+  events = events.filter(e => !(e.date === toDelete.date && e.title === toDelete.title && e.time === toDelete.time));
   localStorage.setItem('events', JSON.stringify(events));
   renderEventList();
   load();
 }
 
 function addEvent() {
-  const input = document.getElementById('newEventInput');
-  const title = input.value.trim();
-  if (!title || !clicked) return;
+  const titleInput = document.getElementById('newEventInput');
+  const timeInput = document.getElementById('eventTimeInput');
+  const title = titleInput.value.trim();
+  const time = timeInput.value;
 
-  events.push({ date: clicked, title });
+  if (!title || !clicked || !time) return;
+
+  events.push({ date: clicked, title, time });
   localStorage.setItem('events', JSON.stringify(events));
-  input.value = '';
+  titleInput.value = '';
+  timeInput.value = '';
   renderEventList();
   load();
 }
 
 document.getElementById('addEventButton').addEventListener('click', addEvent);
-
-document.getElementById('backButton').addEventListener('click', () => {
-  nav--;
-  load();
-});
-
-document.getElementById('nextButton').addEventListener('click', () => {
-  nav++;
-  load();
-});
+document.getElementById('backButton').addEventListener('click', () => { nav--; load(); });
+document.getElementById('nextButton').addEventListener('click', () => { nav++; load(); });
 
 load();
