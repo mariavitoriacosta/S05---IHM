@@ -33,6 +33,7 @@ body {
   justify-content: center;
   background-color: var(--body-color);
   font-family: "Arimo", sans-serif;
+  overflow-x: hidden;
 }
 button {
   width: 75px;
@@ -45,6 +46,69 @@ button {
   color: white;
 }
 
+header, .mensagens, .aulas {
+    grid-column: 1 / 13;
+    padding: 16px;
+    border-radius: 15px;
+}
+
+header {
+    background: #FFFFF;
+}
+
+.top-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin-bottom: 1px;
+    justify-content: space-between;
+    padding: 0 24px; 
+    margin-top: 16px;
+}
+
+    .top-icons span {
+        font-size: 40px;
+        cursor: pointer;
+        color: white !important;
+    }
+
+.top-icons-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+    
+.mensagens .material-symbols-outlined,
+.aulas .material-symbols-outlined,
+#carousel-container .material-symbols-outlined,
+.comp-aula .material-symbols-outlined {
+    color: var(--icon-box-color); /* azul Inatel */
+}
+
+
+.logo {
+    width: 10px;
+    height: 30px;
+    position: absolute;
+    top: px;
+    left: 100px;
+}
+
+.svg_logo_inatel {
+    overflow: visible;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100px;
+    fill: white !important; 
+}
+
+.path_logo {
+    stroke: none;
+    fill: var(--icon-logo-color); 
+}
+
 #header {
   padding: 10px;
   color: var(--header-color);
@@ -53,6 +117,7 @@ button {
   display: flex;
   font-weight: bold;
   justify-content: space-between;
+  grid-column: 1 / 13;
 }
 #header button {
   background-color:var(--header-button);
@@ -95,6 +160,7 @@ button {
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
   display: none;
+  margin-bottom: 20px;
 }
 
 #eventListContainer h3 {
@@ -318,21 +384,93 @@ body #container #eventListContainer #addEventButton {
 }
 
 @media screen and (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  .top-icons {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center;
+  gap: 80px !important; /* Aqui define o espaço */
+  padding: 16px 32px;
+}
+
+
+  #container {
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
   #header {
     flex-direction: column;
     align-items: flex-start;
+    padding: 16px 0;
+  }
+
+  #weekdays {
+    font-size: 0.75rem;
+  }
+
+  #weekdays div {
+    font-size: 0.75rem;
   }
 
   .day {
     font-size: 0.7rem;
+    width: calc(100% / 7 - 6px);
+    margin: 3px;
   }
 
-  #weekdays div {
-    font-size: 0.7rem;
+  #eventTitleInput,
+  #newEventInput,
+  #newEventTime {
+    font-size: 0.85rem;
   }
 
-  #eventTitleInput {
-    font-size: 0.9rem;
+  #addEventButton {
+    font-size: 12px;
+    padding: 6px 10px;
   }
 }
+
+#calendarHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+#calendarHeader #monthDisplay {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  min-width: 140px;
+  text-align: center;
+  box-shadow: none;
+}
+
+.arrow-btn {
+  background-color: #1d27b1;
+  color: white;
+  border: none;
+  font-size: 24px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  padding: 0;
+  border-radius: 4px; /* opcional: arredondar um pouco */
+  cursor: pointer;
+  text-align: center;
+}
+
+
+.arrow-btn:hover {
+  background-color: #e0e0e0;
+}
+
 

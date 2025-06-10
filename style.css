@@ -129,11 +129,7 @@ header h1 {
     color: var(--icon-box-color);
 }
 
-.mensagens,
-.aulas,
-.carousel-wrapper {
-  margin-bottom: 24px; /* ou 32px se quiser mais espaçado */
-}
+
 
 
 .mensagens {
