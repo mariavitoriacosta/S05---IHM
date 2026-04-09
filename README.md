@@ -93,7 +93,7 @@ Durante o desenvolvimento, foram aplicados conceitos importantes da área de Int
 1. Baixe ou clone o repositório:
 
 ```bash id="cloneproj"
-git clone <URL_DO_REPOSITORIO>
+git clone <https://github.com/mariavitoriacosta/S05---IHM>
 ```
 
 2. Abra o projeto em qualquer editor (VS Code, por exemplo)
